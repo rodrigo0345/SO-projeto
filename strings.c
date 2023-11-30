@@ -1,5 +1,6 @@
 #include "header.h"
 #include <assert.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -106,5 +107,25 @@ void add_identifier(char ***string, char *id) {
   for (; *iter_pipe_aux != NULL; iter_pipe_aux++) {
     if (*iter_pipe_aux != NULL)
       strcat(*iter_pipe_aux, id);
+  }
+}
+
+void trimString(char *str) {
+  int start = 0, end = strlen(str) - 1;
+
+  // Remove leading whitespace
+  while (isspace(str[start])) {
+    start++;
+  }
+
+  // Remove trailing whitespace
+  while (end > start && isspace(str[end])) {
+    end--;
+  }
+
+  // If the string was trimmed, adjust the null terminator
+  if (start > 0 || end < (strlen(str) - 1)) {
+    memmove(str, str + start, end - start + 1);
+    str[end - start + 1] = '\0';
   }
 }

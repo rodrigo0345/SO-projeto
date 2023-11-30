@@ -14,6 +14,7 @@ typedef struct SubProgram {
 } SubProgram;
 
 char **str_split(const char *a_str, const char a_delim);
+void trimString(char *str);
 void inspect_programs(SubProgram **programs);
 int count_programs(SubProgram **programs);
 SubProgram **parse(char **argv, int argc);

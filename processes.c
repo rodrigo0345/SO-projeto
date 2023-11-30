@@ -18,6 +18,9 @@ int create_process_run(SubProgram *argv,
   }
   // The parent returns
   if (pid != 0) {
+    if (prev_pipe != NULL)
+      close_pipe(prev_pipe);
+    printf("Child pid: %d\n", pid);
     waitpid(pid, NULL, 0);
     return pid;
   }

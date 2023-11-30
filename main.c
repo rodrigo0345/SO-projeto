@@ -8,6 +8,7 @@
 
 void execute_program_sync(SubProgram *program, int pid) {
   // get the first command
+  trimString(program->argv);
   char **f = str_split(program->argv, ' ');
   char **aux_iter = f;
 
@@ -17,7 +18,6 @@ void execute_program_sync(SubProgram *program, int pid) {
       *aux_iter = NULL;
       break;
     }
-    printf("using: %s\n", *aux_iter);
     aux_iter++;
   }
   printf("Executing program: %s %s %s %s\n", f[0], f[1], f[2], f[3]);
@@ -33,6 +33,7 @@ int main(int argc, char **argv) {
 
   SubProgram **programs_string = parse(argv, argc);
   int num_pipes = count_programs(programs_string) - 1;
+  printf("Number of pipes: %d\n", num_pipes);
 
   Pipe pipes[num_pipes];
   for (int i = 0; i < num_pipes; i++) {
@@ -40,15 +41,18 @@ int main(int argc, char **argv) {
   }
 
   for (int i = 0; i < num_pipes + 1; i++) {
+    printf("Current process %s\n", programs_string[i]->argv);
     Pipe *prev = i == 0 ? NULL : &pipes[i - 1];
     Pipe *next = i == num_pipes ? NULL : &pipes[i];
-    printf("Current process %s\n", programs_string[i]->argv);
+    printf("Prev: %p, Next: %p\n", prev->fd, next->fd);
 
     int pid1 = create_process_run(programs_string[i], execute_program_sync,
                                   prev, next);
+
     if (pid1 < 0) {
       exit(EXIT_FAILURE);
     }
   }
+
   exit(EXIT_SUCCESS);
 }
