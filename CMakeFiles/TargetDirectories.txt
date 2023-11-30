@@ -1,0 +1,3 @@
+/home/rodrigo0345/dev/trabalho-SO/CMakeFiles/app.dir
+/home/rodrigo0345/dev/trabalho-SO/CMakeFiles/edit_cache.dir
+/home/rodrigo0345/dev/trabalho-SO/CMakeFiles/rebuild_cache.dir

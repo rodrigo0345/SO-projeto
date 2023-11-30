@@ -1,0 +1,1 @@
+/usr/sbin/cc  -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 CMakeFiles/app.dir/main.c.o CMakeFiles/app.dir/pipes.c.o CMakeFiles/app.dir/processes.c.o CMakeFiles/app.dir/programs.c.o CMakeFiles/app.dir/strings.c.o -o app  -Wl,-rpath,/usr/local/lib /usr/local/lib/libraylib.so 
