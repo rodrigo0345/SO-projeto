@@ -1,0 +1,12 @@
+void create_pipe(int *fd);
+  Pipe *p = (Pipe *)malloc(sizeof(Pipe));
+void close_pipe(const Pipe *pipe) {
+  close(pipe->fd[0]);
+  close(pipe->fd[1]);
+// fd é para o input e output
+void write_pipe(const Pipe *pipe, int fd) {
+  close_pipe(pipe);
+void read_pipe(const Pipe *pipe, int fd) {
+  close_pipe(pipe);
+void create_pipe(int *fd) {
+    perror("pipe");
